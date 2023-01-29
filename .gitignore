@@ -1,0 +1,10 @@
+# General
+*.env
+#*.sh
+*.exe
+*.DS_Store
+
+
+# Editors
+/.idea
+/.vscode

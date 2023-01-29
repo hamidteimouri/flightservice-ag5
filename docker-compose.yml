@@ -1,0 +1,37 @@
+version: '3.5'
+
+services:
+
+
+  flights:
+    container_name: flights
+    logging:
+      options:
+        max-size: 2048m
+        max-file: "2"
+    build:
+      context: .
+    ports:
+      - "50051:50051"
+      - "1323:1323"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    container_name: postgres
+    image: postgres:13.2-alpine
+    command: postgres -c 'max_connections=250'
+    environment:
+      POSTGRES_DB: demo
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /data/postgres
+    volumes:
+      - ./init-postgres:/docker-entrypoint-initdb.d
+    restart: always
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d postgres" ]
+      interval: 3s
+      timeout: 5s
+      retries: 3

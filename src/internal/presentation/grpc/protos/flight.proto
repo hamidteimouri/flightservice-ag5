@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package flight;
+option go_package = "../pbs";
+import "google/protobuf/timestamp.proto";
+
+
+/****************** Services ******************/
+service FlightService {
+  rpc BestMatch (BestMatchRequest) returns (BestMatchReply);
+}
+message Flight{
+  uint64 flight_id = 1;
+  string flight_no = 2;
+  google.protobuf.Timestamp scheduled_departure = 3;
+  google.protobuf.Timestamp scheduled_arrival = 4;
+  string arrival_airport = 5;
+  string departure_airport = 6;
+  string status = 7;
+  string date = 8;
+}
+message BestMatchRequest{
+  string origin = 1;
+  string destination = 2;
+  string date = 3;        // example : 2023-01-28
+}
+message BestMatchReply{
+  repeated Flight flights = 1;
+}
