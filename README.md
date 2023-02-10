@@ -1,5 +1,5 @@
 # Assignment
-
+### Question
 In this exercise, you are going to build a FlightAvailability service:
 
 - The service should be developed using Go.
@@ -14,13 +14,14 @@ Do not model every entity from that database; choose a minimal type system such 
 available flights as described above. See also
 Postgres [Pro Standard : Documentation: 10: J.2. Schema Diagram](https://postgrespro.com/docs/postgrespro/10/apjs02.html)
 
-# Notes
+### Notes
 
 - You're allowed to use open-source packages as you see fit.
 - Anything not in the description is up to you.
 - We are not expected a production ready solution ; limit your time spent to at most 4 hours.
-
-# How to run :
+---
+# Answer
+### How to run :
 
 I wrote a `Makefile` to download demo database to import into `postgres`. Then I use docker compose to run the project.
 I implemented both of `grpc` and `rest`. These are the ports :
